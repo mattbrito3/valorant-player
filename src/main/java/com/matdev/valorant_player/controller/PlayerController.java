@@ -15,6 +15,4 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
-    @GetMapping
-
 }
