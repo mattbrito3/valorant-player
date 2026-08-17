@@ -1,18 +1,30 @@
 package com.matdev.valorant_player.model;
+import jakarta.persistence.*;
 
-
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
+@Entity
+@Table(name = "Player")
 public class Player {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nickname;
     private String rank;
     private String mainRole;
     private Integer level;
+
+    public Player () {}
+
+    public Player(Long id, String nickname, String rank, String mainRole, Integer level) {
+        this.id = id;
+        this.nickname = nickname;
+        this.rank = rank;
+        this.mainRole = mainRole;
+        this.level = level;
+    }
+
+    public Player(String agent, String elo, String nickname, String role) {
+    }
 
     public Long getId() {
         return id;
