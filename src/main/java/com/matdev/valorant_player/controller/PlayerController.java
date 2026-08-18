@@ -7,9 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
-@RequestMapping("/agents")
+@RequestMapping("/players")
 public class PlayerController {
 
     private final PlayerService playerService;
@@ -22,8 +24,13 @@ public class PlayerController {
         return playerService.buscarPlayer(id);
     }
 
+    @GetMapping()
+    public ResponseEntity<List<ResponsePlayerDTO>> listarPlayers() {
+        return ResponseEntity.ok(playerService.listarTodos());
+    }
 
-    @PostMapping("/players")
+
+    @PostMapping()
     public ResponseEntity<ResponsePlayerDTO> criar(@RequestBody CriarPlayerRequestDTO dto) {
         ResponsePlayerDTO playerCriado = playerService.criar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(playerCriado);

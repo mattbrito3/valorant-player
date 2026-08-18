@@ -15,6 +15,9 @@ public class ResponsePlayerDTO {
     }
 
     public ResponsePlayerDTO(Player criarPlayer) {
+        this.id = criarPlayer.getId();
+        this.nickname = criarPlayer.getNickname();
+        this.elo = criarPlayer.getRank();
     }
 
     public String getNickname() {
