@@ -1,5 +1,8 @@
 package com.matdev.valorant_player.model;
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Player")
@@ -8,22 +11,47 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Nickname não pode estar vazio")
+    @Size(min = 3, max = 16)
     private String nickname;
+
+    private String tag;
     private String rank;
     private String mainRole;
-    private Integer level;
+    private String mainAgent;
 
-    public Player () {}
 
-    public Player(Long id, String nickname, String rank, String mainRole, Integer level) {
+    public Player() {
+    }
+
+    public Player(Long id, String nickname, String rank, String mainRole, String tag, String mainAgent) {
         this.id = id;
+        this.mainAgent = mainAgent;
+        this.tag = tag;
         this.nickname = nickname;
         this.rank = rank;
         this.mainRole = mainRole;
-        this.level = level;
+
     }
 
-    public Player(String agent, String elo, String nickname, String role) {
+    public Player(String agent, String rank, String nickname, String role) {
+    }
+
+    public String getMainAgent() {
+        return mainAgent;
+    }
+
+    public void setMainAgent(String mainAgent) {
+        this.mainAgent = mainAgent;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public Long getId() {
@@ -56,13 +84,5 @@ public class Player {
 
     public void setMainRole(String mainRole) {
         this.mainRole = mainRole;
-    }
-
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
     }
 }

@@ -3,14 +3,24 @@ package com.matdev.valorant_player.dto;
 public class CriarPlayerRequestDTO {
     private String nickname;
     private String elo;
-    private String role;
-    private String agent;
+    private String tag;
+    private String mainRole;
+    private String mainAgent;
 
-    public CriarPlayerRequestDTO(String nickname, String role, String elo, String agent) {
+    public CriarPlayerRequestDTO(String nickname, String mainRole, String elo, String mainAgent,  String tag) {
         this.nickname = nickname;
-        this.role = role;
+        this.mainRole = mainRole;
+        this.tag = tag;
         this.elo = elo;
-        this.agent = agent;
+        this.mainAgent = mainAgent;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public String getNickname() {
@@ -29,19 +39,19 @@ public class CriarPlayerRequestDTO {
         this.elo = elo;
     }
 
-    public String getRole() {
-        return role;
+    public String getMainRole() {
+        return mainRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setMainRole(String mainRole) {
+        this.mainRole = mainRole;
     }
 
-    public String getAgent() {
-        return agent;
+    public String getMainAgent() {
+        return mainAgent;
     }
 
-    public void setAgent(String agent) {
-        this.agent = agent;
+    public void setMainAgent(String mainAgent) {
+        this.mainAgent = mainAgent;
     }
 }

@@ -7,9 +7,15 @@ public class ResponsePlayerDTO {
     private Long id;
     private String nickname;
     private String elo;
+    private String mainAgent;
+    private String tag;
+    private String mainRole;
 
-    public ResponsePlayerDTO(Long id, String nickname, String elo) {
+    public ResponsePlayerDTO(Long id, String nickname, String elo, String mainAgent, String tag, String mainRole) {
         this.id = id;
+        this.mainAgent = mainAgent;
+        this.mainRole = mainRole;
+        this.tag = tag;
         this.nickname = nickname;
         this.elo = elo;
     }
@@ -18,6 +24,30 @@ public class ResponsePlayerDTO {
         this.id = criarPlayer.getId();
         this.nickname = criarPlayer.getNickname();
         this.elo = criarPlayer.getRank();
+    }
+
+    public String getMainAgent() {
+        return mainAgent;
+    }
+
+    public void setMainAgent(String mainAgent) {
+        this.mainAgent = mainAgent;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getMainRole() {
+        return mainRole;
+    }
+
+    public void setMainRole(String mainRole) {
+        this.mainRole = mainRole;
     }
 
     public String getNickname() {

@@ -14,11 +14,12 @@ import java.util.List;
 public class PlayerService {
 
     private final PlayerRepository playerRepository;
+
     public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
 
-    public ResponsePlayerDTO buscarPlayer (Long id){
+    public ResponsePlayerDTO buscarPlayer(Long id) {
         Player player = playerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Player não encontrado"));
 
@@ -26,7 +27,7 @@ public class PlayerService {
     }
 
     public ResponsePlayerDTO criar(@RequestBody CriarPlayerRequestDTO dto) {
-        Player player = new Player(dto.getAgent(), dto.getElo(), dto.getNickname(), dto.getRole());
+        Player player = new Player(dto.getMainAgent(), dto.getElo(), dto.getNickname(), dto.getMainRole());
         Player criarPlayer = playerRepository.save(player);
 
         return new ResponsePlayerDTO(criarPlayer);
@@ -34,12 +35,12 @@ public class PlayerService {
 
 
     public List<ResponsePlayerDTO> listarTodos() { //Meu metodo vai devolver uma lista de ResponsePlayerDTO
-    List<Player> players = playerRepository.findAll(); // O findAll() busca no banco e me devolve uma lista de Player (entidades)
-    List<ResponsePlayerDTO> dtos = new ArrayList<>(); // Crio uma lista vazia para armazenar os ResponsePlayerDTO
-    for (Player player : players) { // Para cada Player encontrado...
-        ResponsePlayerDTO dto = new ResponsePlayerDTO(player); // ...transformo esse Player em um ResponsePlayerDTO
-        dtos.add(dto); // E adiciono o DTO na lista que vou devolver
-    }
-    return dtos; // Devolvo a lista de DTOs
+        List<Player> players = playerRepository.findAll(); // O findAll() busca no banco e me devolve uma lista de Player (entidades)
+        List<ResponsePlayerDTO> dtos = new ArrayList<>(); // Crio uma lista vazia para armazenar os ResponsePlayerDTO
+        for (Player player : players) { // Para cada Player encontrado...
+            ResponsePlayerDTO dto = new ResponsePlayerDTO(player); // ...transformo esse Player em um ResponsePlayerDTO
+            dtos.add(dto); // E adiciono o DTO na lista que vou devolver
+        }
+        return dtos; // Devolvo a lista de DTOs
     }
 }
