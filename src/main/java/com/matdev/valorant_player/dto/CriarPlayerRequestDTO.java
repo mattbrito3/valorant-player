@@ -1,57 +1,63 @@
 package com.matdev.valorant_player.dto;
 
-public class CriarPlayerRequestDTO {
-    private String nickname;
-    private String elo;
-    private String tag;
-    private String mainRole;
-    private String mainAgent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import com.matdev.valorant_player.enums.Elo;
+import com.matdev.valorant_player.enums.Role;
+import com.matdev.valorant_player.enums.Agent;
 
-    public CriarPlayerRequestDTO(String nickname, String mainRole, String elo, String mainAgent,  String tag) {
+public class CriarPlayerRequestDTO {
+
+    @NotBlank(message = "Nickname é obrigatório")
+    @Size(min = 3, max = 16)
+    private String nickname;
+
+    @NotBlank(message = "Tag é obrigatória")
+    @Size(min = 2, max = 6)
+    private String tag;
+
+    @NotNull(message = "Elo é obrigatório")
+    private Elo elo;
+
+    @NotNull(message = "Role é obrigatório")
+    private Role mainRole;
+
+    @NotNull(message = "Agent é obrigatório")
+    private Agent mainAgent;
+
+    // CONSTRUTOR COM ORDEM CORRETA (igual aos campos)
+    public CriarPlayerRequestDTO(
+            String nickname,
+            String tag,
+            Elo elo,
+            Role mainRole,
+            Agent mainAgent
+    ) {
         this.nickname = nickname;
-        this.mainRole = mainRole;
         this.tag = tag;
         this.elo = elo;
+        this.mainRole = mainRole;
         this.mainAgent = mainAgent;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
     }
 
     public String getNickname() {
         return nickname;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public String getTag() {
+        return tag;
     }
 
-    public String getElo() {
+    public Elo getElo() {
         return elo;
     }
 
-    public void setElo(String elo) {
-        this.elo = elo;
-    }
-
-    public String getMainRole() {
+    public Role getMainRole() {
         return mainRole;
     }
 
-    public void setMainRole(String mainRole) {
-        this.mainRole = mainRole;
-    }
-
-    public String getMainAgent() {
+    public Agent getMainAgent() {
         return mainAgent;
-    }
-
-    public void setMainAgent(String mainAgent) {
-        this.mainAgent = mainAgent;
     }
 }

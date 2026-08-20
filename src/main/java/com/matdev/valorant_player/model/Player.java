@@ -1,8 +1,9 @@
 package com.matdev.valorant_player.model;
+import com.matdev.valorant_player.enums.Elo;
+import com.matdev.valorant_player.enums.Role;
+import com.matdev.valorant_player.enums.Agent;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Player")
@@ -11,47 +12,35 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank(message = "Nickname não pode estar vazio")
-    @Size(min = 3, max = 16)
     private String nickname;
-
     private String tag;
-    private String rank;
-    private String mainRole;
-    private String mainAgent;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private  Elo elo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private  Role mainRole;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private  Agent mainAgent;
 
 
     public Player() {
     }
 
-    public Player(Long id, String nickname, String rank, String mainRole, String tag, String mainAgent) {
-        this.id = id;
+    public Player(Agent mainAgent, Role mainRole, Elo elo, String tag, String nickname, Long id) {
         this.mainAgent = mainAgent;
+        this.mainRole = mainRole;
+        this.elo = elo;
         this.tag = tag;
         this.nickname = nickname;
-        this.rank = rank;
-        this.mainRole = mainRole;
-
+        this.id = id;
     }
 
-    public Player(String agent, String rank, String nickname, String role) {
-    }
-
-    public String getMainAgent() {
-        return mainAgent;
-    }
-
-    public void setMainAgent(String mainAgent) {
-        this.mainAgent = mainAgent;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
+    public Player(Agent mainAgent, Role mainRole, Elo elo, String tag, String nickname) {
     }
 
     public Long getId() {
@@ -70,19 +59,35 @@ public class Player {
         this.nickname = nickname;
     }
 
-    public String getRank() {
-        return rank;
+    public String getTag() {
+        return tag;
     }
 
-    public void setRank(String rank) {
-        this.rank = rank;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
-    public String getMainRole() {
+    public Elo getElo() {
+        return elo;
+    }
+
+    public void setElo(Elo elo) {
+        this.elo = elo;
+    }
+
+    public Role getMainRole() {
         return mainRole;
     }
 
-    public void setMainRole(String mainRole) {
+    public void setMainRole(Role mainRole) {
         this.mainRole = mainRole;
+    }
+
+    public Agent getMainAgent() {
+        return mainAgent;
+    }
+
+    public void setMainAgent(Agent mainAgent) {
+        this.mainAgent = mainAgent;
     }
 }

@@ -1,36 +1,64 @@
 package com.matdev.valorant_player.dto;
 
 import com.matdev.valorant_player.model.Player;
+import com.matdev.valorant_player.enums.Elo;
+import com.matdev.valorant_player.enums.Role;
+import com.matdev.valorant_player.enums.Agent;
 
 public class ResponsePlayerDTO {
 
     private Long id;
     private String nickname;
-    private String elo;
-    private String mainAgent;
+    private Elo elo;
+    private Agent mainAgent;
     private String tag;
-    private String mainRole;
+    private Role mainRole;
 
-    public ResponsePlayerDTO(Long id, String nickname, String elo, String mainAgent, String tag, String mainRole) {
-        this.id = id;
-        this.mainAgent = mainAgent;
-        this.mainRole = mainRole;
-        this.tag = tag;
-        this.nickname = nickname;
-        this.elo = elo;
-    }
 
     public ResponsePlayerDTO(Player criarPlayer) {
         this.id = criarPlayer.getId();
         this.nickname = criarPlayer.getNickname();
-        this.elo = criarPlayer.getRank();
+        this.elo = criarPlayer.getElo();
     }
 
-    public String getMainAgent() {
+    public ResponsePlayerDTO(Long id, String nickname, Elo elo, Agent mainAgent, String tag, Role mainRole) {
+        this.id = id;
+        this.nickname = nickname;
+        this.elo = elo;
+        this.mainAgent = mainAgent;
+        this.tag = tag;
+        this.mainRole = mainRole;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Elo getElo() {
+        return elo;
+    }
+
+    public void setElo(Elo elo) {
+        this.elo = elo;
+    }
+
+    public Agent getMainAgent() {
         return mainAgent;
     }
 
-    public void setMainAgent(String mainAgent) {
+    public void setMainAgent(Agent mainAgent) {
         this.mainAgent = mainAgent;
     }
 
@@ -42,35 +70,11 @@ public class ResponsePlayerDTO {
         this.tag = tag;
     }
 
-    public String getMainRole() {
+    public Role getMainRole() {
         return mainRole;
     }
 
-    public void setMainRole(String mainRole) {
+    public void setMainRole(Role mainRole) {
         this.mainRole = mainRole;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getElo() {
-        return elo;
-    }
-
-    public void setElo(String elo) {
-        this.elo = elo;
     }
 }

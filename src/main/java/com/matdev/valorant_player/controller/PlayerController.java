@@ -3,6 +3,7 @@ package com.matdev.valorant_player.controller;
 import com.matdev.valorant_player.dto.CriarPlayerRequestDTO;
 import com.matdev.valorant_player.dto.ResponsePlayerDTO;
 import com.matdev.valorant_player.service.PlayerService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class PlayerController {
 
 
     @PostMapping()
-    public ResponseEntity<ResponsePlayerDTO> criar(@RequestBody CriarPlayerRequestDTO dto) {
+    public ResponseEntity<ResponsePlayerDTO> criar(@Valid @RequestBody CriarPlayerRequestDTO dto) {
         ResponsePlayerDTO playerCriado = playerService.criar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(playerCriado);
     }
