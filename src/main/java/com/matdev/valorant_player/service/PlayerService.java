@@ -4,6 +4,7 @@ import com.matdev.valorant_player.dto.CriarPlayerRequestDTO;
 import com.matdev.valorant_player.dto.ResponsePlayerDTO;
 import com.matdev.valorant_player.model.Player;
 import com.matdev.valorant_player.repository.PlayerRepository;
+import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;

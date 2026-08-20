@@ -10,6 +10,4 @@ public enum Elo {
     ASCENDENTE,
     IMORTAL,
     RADIANTE
-
-
 }

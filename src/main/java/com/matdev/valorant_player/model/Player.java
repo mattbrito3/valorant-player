@@ -1,4 +1,5 @@
 package com.matdev.valorant_player.model;
+
 import com.matdev.valorant_player.enums.Elo;
 import com.matdev.valorant_player.enums.Role;
 import com.matdev.valorant_player.enums.Agent;
@@ -17,15 +18,15 @@ public class Player {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private  Elo elo;
+    private Elo elo;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private  Role mainRole;
+    private Role mainRole;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private  Agent mainAgent;
+    private Agent mainAgent;
 
 
     public Player() {
@@ -38,9 +39,14 @@ public class Player {
         this.tag = tag;
         this.nickname = nickname;
         this.id = id;
-    }
+    } // dois construtores, um com id e outro sem id, precisamos de 3 construtores, um com 5 parametros, 6 e um vazio.
 
     public Player(Agent mainAgent, Role mainRole, Elo elo, String tag, String nickname) {
+        this.mainAgent = mainAgent;
+        this.mainRole = mainRole;
+        this.elo = elo;
+        this.tag = tag;
+        this.nickname = nickname;
     }
 
     public Long getId() {
