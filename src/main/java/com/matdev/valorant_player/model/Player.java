@@ -14,6 +14,8 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nickname;
+
+    @Column(nullable = false)
     private String tag;
 
     @Enumerated(EnumType.STRING)
@@ -39,7 +41,7 @@ public class Player {
         this.tag = tag;
         this.nickname = nickname;
         this.id = id;
-    } // dois construtores, um com id e outro sem id, precisamos de 3 construtores, um com 5 parametros, 6 e um vazio.
+    } // dois construtores, um com id e outro sem id, precisamos de 3 construtores, um com 5 parametros, 6 e um vazio.ma
 
     public Player(Agent mainAgent, Role mainRole, Elo elo, String tag, String nickname) {
         this.mainAgent = mainAgent;

@@ -37,4 +37,6 @@ public class PlayerController {
         ResponsePlayerDTO playerCriado = playerService.criar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(playerCriado);
     }
+
+    
 }

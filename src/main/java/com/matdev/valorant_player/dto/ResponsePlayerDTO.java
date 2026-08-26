@@ -19,6 +19,9 @@ public class ResponsePlayerDTO {
         this.id = criarPlayer.getId();
         this.nickname = criarPlayer.getNickname();
         this.elo = criarPlayer.getElo();
+        this.mainAgent = criarPlayer.getMainAgent();
+        this.mainRole = criarPlayer.getMainRole();
+        this.tag = criarPlayer.getTag();
     }
 
     public ResponsePlayerDTO(Long id, String nickname, Elo elo, Agent mainAgent, String tag, Role mainRole) {
@@ -28,6 +31,7 @@ public class ResponsePlayerDTO {
         this.mainAgent = mainAgent;
         this.tag = tag;
         this.mainRole = mainRole;
+
     }
 
     public Long getId() {

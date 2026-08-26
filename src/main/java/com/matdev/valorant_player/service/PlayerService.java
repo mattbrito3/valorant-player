@@ -6,6 +6,7 @@ import com.matdev.valorant_player.model.Player;
 import com.matdev.valorant_player.repository.PlayerRepository;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -36,7 +37,6 @@ public class PlayerService {
                 dto.getTag(),
                 dto.getNickname());
         Player playerSalvo =  playerRepository.save(player);
-
         return new ResponsePlayerDTO(playerSalvo);
     }
 
