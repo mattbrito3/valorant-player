@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,6 +38,18 @@ public class PlayerService {
         return new ResponsePlayerDTO(playerSalvo);
     }
 
+    public ResponsePlayerDTO atualizar(Long id, @Valid @RequestBody CriarPlayerRequestDTO dto) {
+        Player player = playerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Player não encontrado"));
+
+        player.setNickname(dto.getNickname());
+        player.setTag(dto.getTag());
+        player.setElo(dto.getElo());
+        player.setMainRole(dto.getMainRole());
+        player.setMainAgent(dto.getMainAgent());
+
+        return new ResponsePlayerDTO(playerRepository.save(player));
+    }
 
     public List<ResponsePlayerDTO> listarTodos() { //Meu metodo vai devolver uma lista de ResponsePlayerDTO
         return playerRepository.findAll()
