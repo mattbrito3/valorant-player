@@ -38,5 +38,17 @@ public class PlayerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(playerCriado);
     }
 
-    
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponsePlayerDTO> atualizar(@PathVariable Long id,
+                                                     @Valid @RequestBody CriarPlayerRequestDTO dto) {
+        ResponsePlayerDTO playerAtualizado = playerService.atualizar(id, dto);
+        return ResponseEntity.ok(playerAtualizado);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        playerService.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

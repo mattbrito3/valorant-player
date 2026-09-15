@@ -6,17 +6,40 @@ import com.matdev.valorant_player.enums.Agent;
 
 import jakarta.persistence.*;
 
+import java.util.Locale;
+
 @Entity
-@Table(name = "Player")
+@Table(
+        name = "Player",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"nickname", "tag"})
+)
 public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String nickname;
 
     @Column(nullable = false)
     private String tag;
+
+    @PrePersist
+    @PreUpdate
+    private void normalizeFields() {
+        if (nickname != null) {
+            nickname = nickname.trim().toLowerCase(Locale.ROOT);
+        }
+
+        if (tag != null) {
+            tag = tag.trim();
+            if (!tag.startsWith("#")) {
+                tag = "#" + tag;
+            }
+            tag = tag.toUpperCase(Locale.ROOT);
+        }
+    }
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
